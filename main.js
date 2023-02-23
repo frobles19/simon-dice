@@ -6,7 +6,7 @@ class Simon {
     constructor(botonSimon, botonStart, score) {
         this.score = 0;
         this.posUsuario = 0; // pos del jugador a medida que va tocando los botones
-        this.rondaGanador = 15;
+        this.rondaGanador = 10;
         this.secuencia = [];
         this.velocidad = 1000;
         this.bloquearBoton = true;
@@ -15,6 +15,14 @@ class Simon {
             botonStart,
             score
         }
+        this.sonidoError = new Audio("./sonidos/error.mp3");
+        this.sonidoGanador = new Audio("./sonidos/winner.mp3");
+        this.sonidoBoton = [
+            new Audio("./sonidos/1.mp3"),
+            new Audio("./sonidos/2.mp3"),
+            new Audio("./sonidos/3.mp3"),
+            new Audio("./sonidos/4.mp3"),
+        ]
     }
 
     init() {
@@ -53,6 +61,7 @@ class Simon {
 
     validarEleccion(value) {
         if (this.secuencia[this.posUsuario] === value) { // (1) compara si la eleccion del usuario es la que corresponde
+            this.sonidoBoton[value].play();
             if (this.score === this.posUsuario) { // (2) compara si el usuario ya termino de ingresar la secuencia
                 this.actualizarRonda(this.score + 1); // aumenta la ronda en 1
                 this.velocidad /= 1.02; // reduce la velocidad en la que se muestra la secuencia
@@ -80,6 +89,10 @@ class Simon {
         let timer = setInterval(() => { // creamos un timer que ejecute la siguiente funcion cada cierto tiempo (this.velocidad)
             const boton = this.botones[this.secuencia[indiceSecuencia]]; // variable para almacenar el valor del boton a señalar
             this.pintarBotones(boton); // señalamos el boton
+
+            this.sonidoBoton[this.secuencia[indiceSecuencia - 1]].ended = true;
+
+            this.sonidoBoton[this.secuencia[indiceSecuencia]].play();
             setTimeout(() => this.pintarBotones(boton), this.velocidad / 2) // esperamos la mitad del tiempo y lo dejamos de señalar
             indiceSecuencia++; // aumentamos el indice de la secuencia
             if (indiceSecuencia > this.score) { // compara si el indice es mayor al nivel
@@ -96,6 +109,7 @@ class Simon {
     juegoPerdido() {
         this.display.botonStart.disabled = false; // desbloquea el boton de inicio
         this.bloquearBoton = true; // bloquea los botones del simon
+        this.sonidoError.play();
     }
 
     juegoGanado() {
@@ -105,6 +119,7 @@ class Simon {
             element.classList.add('ganador');
         })
         this.actualizarRonda('🏆')
+        this.sonidoGanador.play();
     }
 }
 

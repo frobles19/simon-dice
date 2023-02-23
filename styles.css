@@ -110,3 +110,14 @@ body {
         transform: rotate(180deg);
     }
 }
+
+@media (max-width: 600px) {
+    .simon {
+        width: 350px;
+    }
+
+    .cuadrados {
+        grid-template-columns: repeat(2, 120px);
+        grid-template-rows: repeat(2, 120px);
+    }
+}
