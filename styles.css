@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Doppio+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Doppio One', sans-serif;
+}
+
+body {
+    background-color: #17202A;
+}
+
+.simon {
+    background-color: #4D5656;
+    height: 650px;
+    width: 500px;
+    margin: 50px auto 0;
+    color: #ECF0F1;
+    border-radius: 25px;
+    box-shadow: 10px 10px 10px 5px #00000050;
+}
+
+.titulo {
+    padding: 20px;
+    text-align: center;
+    font-size: 3em;
+}
+
+.texto {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px;
+    font-size: 25px;
+}
+
+.start {
+    padding: 10px;
+    width: 100px;
+    border-radius: 7px;
+    font-size: 15px;
+    border: none;
+    color: #ECF0F1;
+    background-color: #CB4335;
+    box-shadow: 1px 1px 3px 1px #943126;
+    cursor: pointer;
+}
+
+.start:active {
+    filter: brightness(90%);
+}
+
+.start:focus {
+    outline: none;
+}
+
+.start:disabled {
+    background-color: #ABB2B9;
+    box-shadow: 1px 1px 3px 1px #00000005;
+}
+
+.cuadrados {
+    height: auto;
+    width: 100%;
+    display: grid;
+    margin-top: 100px;
+    grid-template-columns: repeat(2, 150px);
+    grid-template-rows: repeat(2, 150px);
+    justify-content: center;
+    rotate: 45deg;
+}
+
+.cuadro {
+    margin: 5px;
+    border-radius: 5px;
+    filter: brightness(95%);
+    cursor: pointer;
+}
+
+.cuadro:active {
+    filter: brightness(140%);
+}
+
+.secuencia {
+    filter: brightness(140%);
+}
+
+#amarillo {
+    background-color: #F4D03F;
+}
+
+#azul {
+    background-color: #3498DB;
+}
+
+#rojo {
+    background-color: #E74C3C;
+}
+
+#verde {
+    background-color: #2ECC71;
+}
+
+.ganador {
+    animation: girar 1s ease-in-out;
+}
+
+@keyframes girar {
+    100% {
+        transform: rotate(180deg);
+    }
+}
