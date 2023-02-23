@@ -89,9 +89,6 @@ class Simon {
         let timer = setInterval(() => { // creamos un timer que ejecute la siguiente funcion cada cierto tiempo (this.velocidad)
             const boton = this.botones[this.secuencia[indiceSecuencia]]; // variable para almacenar el valor del boton a señalar
             this.pintarBotones(boton); // señalamos el boton
-
-            this.sonidoBoton[this.secuencia[indiceSecuencia - 1]].ended = true;
-
             this.sonidoBoton[this.secuencia[indiceSecuencia]].play();
             setTimeout(() => this.pintarBotones(boton), this.velocidad / 2) // esperamos la mitad del tiempo y lo dejamos de señalar
             indiceSecuencia++; // aumentamos el indice de la secuencia
